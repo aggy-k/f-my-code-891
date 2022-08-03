@@ -1,0 +1,27 @@
+<!--pages/stories/index.wxml-->
+<view class="h1">
+  Hi {{name}}, here are some really F*ed Up Coding Stories on EARTH
+</view>
+
+<!-- <block wx:for="{{3}}">
+  <view>Hello</view>
+</block> -->
+
+<view class="cards">
+
+  <block wx:if="{{stories.length <= 0}}">
+    <view>Oops, there's no stories yet</view>
+  </block>
+  <!-- <block wx:elif="{{}}"></block> -->
+  <block wx:else>
+    <view wx:for="{{stories}}" wx:for-item="story" bindtap="goToStory" 
+      data-index="{{index}}"
+      class="card-product"
+      style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('/images/code.png');">
+      <text class="h2">{{story.title}}</text>
+    </view>  
+    
+  </block>
+  
+
+</view>

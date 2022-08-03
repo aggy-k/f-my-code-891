@@ -1,0 +1,26 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.main {
+  padding: 40rpx;
+}
+
+input[type='text'] {
+  border: solid 1px #494545;
+  margin-bottom: 30rpx;
+  padding: 10rpx 20rpx;
+}
+
+textarea {
+  border: solid 1px #494545;
+  margin-bottom: 30rpx;
+  padding: 10rpx 20rpx;
+}

@@ -1,0 +1,11 @@
+<!--pages/stories/show.wxml-->
+<view class="main">
+
+  <view class="title">
+    {{story.title}}
+  </view>
+
+  <view class='body'>
+    {{story.body}}
+  </view>
+</view>

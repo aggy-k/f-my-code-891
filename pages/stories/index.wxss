@@ -1,0 +1,50 @@
+/* pages/stories/index.wxss */
+.cards {
+  padding: 40rpx;
+}
+
+.h1 {
+  font-size: 40rpx;
+  font-weight: bold;
+  padding: 40rpx;
+  text-align: center;
+}
+
+.card-product {
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  height: 240rpx;
+  /* background: white; */
+  border-radius: 20rpx;
+  background-size: cover;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .card-product image {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+} */
+
+.card-product .h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  color: #FFF;
+}
+
+.card-product .p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}

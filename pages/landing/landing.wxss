@@ -1,0 +1,24 @@
+/* pages/landing/landing.wxss */
+.landing-banner {
+  position: fixed;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1621252179027-94459d278660?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex; justify-content: center;
+}
+
+.landing-banner navigator {
+  position: fixed;
+  bottom: 280rpx;
+  /* margin: 0 auto; */
+  /* top: 0; left: 0; */
+}
+
+.landing-banner text {
+  position: fixed;
+  bottom: 460rpx;
+  font-size: 48rpx;
+  color: #fff;
+}

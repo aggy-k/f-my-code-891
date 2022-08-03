@@ -1,0 +1,14 @@
+/* pages/stories/show.wxss */
+.main {
+  padding: 40rpx;
+}
+
+.main .title {
+  font-weight: bold;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.main .body{
+  margin-top: 40rpx;
+}
