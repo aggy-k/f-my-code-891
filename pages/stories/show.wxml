@@ -9,3 +9,8 @@
     {{story.body}}
   </view>
 </view>
+
+<view class="fixed-bottom">
+  <button bindtap="edit" type="primary">Edit</button>
+  <button bindtap="delete" type="warn">Delete</button>
+</view>

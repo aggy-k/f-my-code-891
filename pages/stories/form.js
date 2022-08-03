@@ -6,7 +6,7 @@ Page({
    * Page initial data
    */
   data: {
-
+    formData: {}
   },
 
   /**
@@ -28,6 +28,26 @@ Page({
    */
   onShow: function () {
     console.log('form onSHow')
+    this.resetForm()
+    // this doesnt work on a switchTab
+    // const index = this.options.index
+
+    const index = wx.getStorageSync('editedIndex')
+
+    // console.log('options', this.options)
+    if (index) {
+      console.log('index found')
+      const stories = wx.getStorageSync('stories')
+      this.setData({
+        formData: stories[index],
+        editedIndex: index
+      })
+      wx.removeStorageSync('editedIndex')
+    }
+  },
+
+  resetForm() {
+    this.setData({formData: {}})
   },
 
   /**
@@ -69,10 +89,18 @@ Page({
     console.log(e)
     // { title: 'test', body: 'bla bla bla' }
     const story = e.detail.value
-    const stories = app.globalData.stories
-    stories.push(story)
+    // const stories = app.globalData.stories
+    const stories = wx.getStorageSync('stories')
+
+    if (this.data.editedIndex !== undefined && this.data.editedIndex !== null) {
+      stories[this.data.editedIndex] = story
+    } else {
+      stories.push(story)
+    }
+
     console.log('stories', stories)
-    app.globalData.stories = stories
+    // app.globalData.stories = stories
+    wx.setStorageSync('stories', stories)
     wx.switchTab({
       url: '/pages/stories/index',
     })

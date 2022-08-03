@@ -2,10 +2,10 @@
 <view class="main">
   <form bindsubmit="save">
     <view>Title</view>
-    <input type="text" name="title" />
+    <input type="text" name="title" value="{{formData.title}}" />
 
     <view>Body</view>
-    <textarea name="body" />
+    <textarea name="body" value="{{formData.body}}" />
 
     <button type="primary" form-type="submit">Save</button>
 

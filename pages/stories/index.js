@@ -1,5 +1,5 @@
 // pages/stories/index.js
-const app = getApp()
+// const app = getApp()
 Page({
 
   /**
@@ -29,7 +29,8 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    const stories = app.globalData.stories
+    // const stories = app.globalData.stories
+    const stories = wx.getStorageSync('stories')
     this.setData({
       stories: stories
       // stories: []

@@ -12,12 +12,18 @@
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
+    "color": "#000",
+    "selectedColor": "#07c160",
     "list": [{
       "pagePath": "pages/stories/index",
-      "text": "Stories"
+      "text": "Stories",
+      "iconPath": "images/book.png",
+      "selectedIconPath": "images/book_active.png"
     }, {
       "pagePath": "pages/stories/form",
-      "text": "+ Add story"
+      "text": "Add story",
+      "iconPath": "images/plus.png",
+      "selectedIconPath": "images/plus_active.png"
     }]
   },
   "style": "v2",

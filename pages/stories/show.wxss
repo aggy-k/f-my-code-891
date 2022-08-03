@@ -12,3 +12,9 @@
 .main .body{
   margin-top: 40rpx;
 }
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 50rpx; left:20rpx; right:20rpx;
+  display: flex;
+}

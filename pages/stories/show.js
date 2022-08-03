@@ -14,9 +14,41 @@ Page({
    */
   onLoad: function (options) {
     console.log('inside stories/show, options: ', options)
-    const story = app.globalData.stories[parseInt(options.index)]
+    const stories = wx.getStorageSync('stories')
+    const story = stories[parseInt(options.index)]
     this.setData({
       story: story
+    })
+  },
+
+  edit(e) {
+    console.log('options:', this.options.index)
+    const index = this.options.index
+    console.log({index})
+    wx.setStorageSync('editedIndex', index)
+    wx.switchTab({
+      url: `/pages/stories/form`,
+    })
+  },
+
+  delete(e) {
+    const index = this.options.index
+    const stories = wx.getStorageSync('stories')
+    wx.showModal({
+      title: 'Are you sure?',
+      content: "Delete this story???",
+      success(res) {
+        if (res.confirm) {
+          // delete
+          stories.splice(index, 1)
+          wx.setStorageSync('stories', stories)
+          wx.switchTab({
+            url: '/pages/stories/index',
+          })
+        } else {
+          // do nothing
+        }
+      }
     })
   },
 
