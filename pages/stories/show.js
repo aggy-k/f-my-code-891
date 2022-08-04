@@ -14,37 +14,48 @@ Page({
    */
   onLoad: function (options) {
     console.log('inside stories/show, options: ', options)
-    const stories = wx.getStorageSync('stories')
-    const story = stories[parseInt(options.index)]
-    this.setData({
-      story: story
+    const id = options.id
+    const page = this
+    wx.request({
+      url: `http://localhost:3000/api/v1/stories/${id}`,
+      success(res) {
+        console.log({res})
+        page.setData({
+          story: res.data
+        })
+      }
     })
   },
 
   edit(e) {
-    console.log('options:', this.options.index)
-    const index = this.options.index
-    console.log({index})
-    wx.setStorageSync('editedIndex', index)
+    wx.setStorageSync('editedId', this.data.story.id)
     wx.switchTab({
       url: `/pages/stories/form`,
     })
   },
 
   delete(e) {
-    const index = this.options.index
-    const stories = wx.getStorageSync('stories')
+    // const index = this.options.index
+    // const stories = wx.getStorageSync('stories')
+    const id = this.data.story.id
     wx.showModal({
       title: 'Are you sure?',
       content: "Delete this story???",
       success(res) {
         if (res.confirm) {
           // delete
-          stories.splice(index, 1)
-          wx.setStorageSync('stories', stories)
-          wx.switchTab({
-            url: '/pages/stories/index',
+          // stories.splice(index, 1)
+          // wx.setStorageSync('stories', stories)
+          wx.request({
+            url: `http://localhost:3000/api/v1/stories/${id}`,
+            method: 'DELETE',
+            success(res) {
+              wx.switchTab({
+                url: '/pages/stories/index',
+              })
+            }
           })
+          
         } else {
           // do nothing
         }

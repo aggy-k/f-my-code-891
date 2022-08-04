@@ -30,6 +30,21 @@ Page({
    */
   onShow: function () {
     // const stories = app.globalData.stories
+    // /api/v1/stories
+    const page = this
+
+    wx.request({
+      url: 'http://localhost:3000/api/v1/stories',
+      method: 'GET',
+      // header: {},
+      // data: {},
+      success(res) {
+        console.log({res})
+        page.setData({
+          stories: res.data.stories
+        })
+      }
+    })
     const stories = wx.getStorageSync('stories')
     this.setData({
       stories: stories
@@ -76,19 +91,9 @@ Page({
     console.log('function goToStory e', e)
     const story = this.data.stories[e.currentTarget.dataset.index]
     console.log({story})
-    // wx.showToast({
-    //   title: 'Not good',
-    //   icon: 'error'
-    // })
-    // wx.showModal({
-    //   title: 'Oops',
-    //   content: "You can't access the story",
-    //   showCancel: false,
-    //   confirmText: 'OK'
-    //   // cancelColor: 'cancelColor',
-    // })
+
     wx.navigateTo({
-      url: `/pages/stories/show?index=${e.currentTarget.dataset.index}`,
+      url: `/pages/stories/show?id=${e.currentTarget.dataset.id}`,
     })
   }
 })

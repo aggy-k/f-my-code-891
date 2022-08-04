@@ -15,7 +15,7 @@
   <!-- <block wx:elif="{{}}"></block> -->
   <block wx:else>
     <view wx:for="{{stories}}" wx:for-item="story" bindtap="goToStory" 
-      data-index="{{index}}"
+      data-id="{{story.id}}"
       class="card-product"
       style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('/images/code.png');">
       <text class="h2">{{story.title}}</text>

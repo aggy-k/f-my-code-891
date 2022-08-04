@@ -31,18 +31,24 @@ Page({
     this.resetForm()
     // this doesnt work on a switchTab
     // const index = this.options.index
-
-    const index = wx.getStorageSync('editedIndex')
+    const page = this
+    // const index = wx.getStorageSync('editedIndex')
+    const id = wx.getStorageSync('editedId')
 
     // console.log('options', this.options)
-    if (index) {
-      console.log('index found')
-      const stories = wx.getStorageSync('stories')
-      this.setData({
-        formData: stories[index],
-        editedIndex: index
+    if (id) {
+      console.log('id found -> update')
+      wx.request({
+        url: `http://localhost:3000/api/v1/stories/${id}`,
+        success(res) {
+          page.setData({
+            formData: res.data,
+            editedId: id
+          })
+          wx.removeStorageSync('editedId')
+        }
       })
-      wx.removeStorageSync('editedIndex')
+      
     }
   },
 
@@ -92,17 +98,54 @@ Page({
     // const stories = app.globalData.stories
     const stories = wx.getStorageSync('stories')
 
-    if (this.data.editedIndex !== undefined && this.data.editedIndex !== null) {
-      stories[this.data.editedIndex] = story
+    const page = this
+
+    if (this.data.editedId !== undefined && this.data.editedId !== null) {
+      // stories[this.data.editedIndex] = story
+      wx.request({
+        url: `http://localhost:3000/api/v1/stories/${page.data.editedId}`,
+        method: 'PUT',
+        data: {story: story},
+        success(res) {
+          console.log('update success?', res)
+          wx.switchTab({
+            url: '/pages/stories/index',
+          })
+        }
+      })
     } else {
-      stories.push(story)
+      // stories.push(story)
+      wx.request({
+        url: 'http://localhost:3000/api/v1/stories',
+        method: 'POST',
+        data: { story: story },
+        success(res) {
+          console.log('update success?', res)
+          if (res.statusCode === 422) {
+            wx.showModal({
+              title: 'Error!',
+              content: res.data.errors.join(', '),
+              showCancel: false,
+              confirmText: 'OK'
+            })
+          } else {
+            wx.switchTab({
+              url: '/pages/stories/index',
+            })
+          }
+          
+        },
+        fail(error) {
+          console.log({error})
+        }
+      })
     }
 
-    console.log('stories', stories)
+    // console.log('stories', stories)
     // app.globalData.stories = stories
-    wx.setStorageSync('stories', stories)
-    wx.switchTab({
-      url: '/pages/stories/index',
-    })
+    // wx.setStorageSync('stories', stories)
+    // wx.switchTab({
+    //   url: '/pages/stories/index',
+    // })
   }
 })
